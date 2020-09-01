@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
-
-  private JWT = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxfQ.hWEvqbisuHVIzi1vnpVOWVB9siCm8rIyiUlfRRwZR1M';
   
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   public activeSession() {
     const helper = new JwtHelperService();
@@ -23,12 +23,10 @@ export class SessionService {
     return !isExpired;
   }
 
-  public login(username: string, password: string): string {
+  public login(username: string, password: string): Promise<any> {
     if (username === 'falemparte' && password === 'Banmedica01') {
-      sessionStorage.setItem('token', this.JWT);
-      return this.JWT;
+      return this.http.post(`${environment.serve}api/${environment.api_v1}test/superheroes`, {}).toPromise();
     }
-
     return undefined;
   }
 

@@ -11,7 +11,8 @@
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control" formControlName="password" id="exampleInputPassword1">
               </div>
-              <button type="submit" class="btn btn-primary">Ingresar</button>
+              <small *ngIf="error.loginError" id="emailHelp" class="form-text text-muted" style="color:red !important">El usuario o contraseña ingresado no existen</small>
+              <button type="submit" class="btn btn-primary mt-2">Ingresar</button>
           </form>
       </div>
   </div>

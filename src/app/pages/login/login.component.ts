@@ -11,6 +11,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
+  public error = {
+    loginError: false,
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -25,12 +28,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     if (this.loginForm.valid) {
-      const response = this.sessionService.login(this.loginForm.get('username').value, this.loginForm.get('password').value);
+      const response = await this.sessionService.login(this.loginForm.get('username').value, this.loginForm.get('password').value);
       if (response) {
-        this.sessionService.setToken(response);
+        this.error.loginError = false;
+        const tokenResponse: string = response.data;
+        this.sessionService.setToken(tokenResponse);
         this.router.navigate(['/home']);
+      }
+
+      if (!response) {
+        this.error.loginError = true;
       }
     }
   }
