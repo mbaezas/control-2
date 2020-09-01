@@ -2,13 +2,33 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return '';
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter
+      }
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
