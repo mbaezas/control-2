@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
+import { HttpClientModule } from '@angular/common/http';
 
 export function tokenGetter() {
   return '';
@@ -24,6 +25,7 @@ export function tokenGetter() {
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    HttpClientModule,
     JwtModule.forRoot({
       config: {
         tokenGetter
