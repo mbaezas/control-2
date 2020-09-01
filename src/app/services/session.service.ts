@@ -17,21 +17,20 @@ export class SessionService {
     // const decodedToken = helper.decodeToken(myRawToken);
     // const expirationDate = helper.getTokenExpirationDate(myRawToken);
 
-    const isExpired = helper.isTokenExpired(token); 
-    console.log('getTokenExpirationDate', helper.getTokenExpirationDate(token));
-    console.log('isExpired', isExpired);
+    const isExpired = helper
+
     return !isExpired;
   }
 
   public login(username: string, password: string): Promise<any> {
     if (username === 'falemparte' && password === 'Banmedica01') {
-      return this.http.post(`${environment.serve}api/${environment.api_v1}test/superheroes`, {}).toPromise();
+      return this.http.post(`${environment.serve}api/${environment.api_v1}test/superheroes`, {});
     }
     return undefined;
   }
 
   public setToken(token: string) {
-    sessionStorage.setItem('token', token);
+    sessionStorage.setItem();
   }
 
 }

@@ -15,12 +15,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate: [AuthGuardGuard],
   },
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuardGuard],
   }
 ]
 
